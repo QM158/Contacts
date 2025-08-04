@@ -50,11 +50,7 @@
 
   <script>
     const names = ["Arnold", "Sly", "Dwayne", "Vin", "JCVD", "Steven"];
-
-    const nameTable = document.getElementById("nameTable");
-    for (let i = 0; i < names.length; i++) {
-      nameTable.innerHTML += `<tr><td>${i}</td><td>${names[i]}</td></tr>`;
-    }
+    var guessed = [false, false, false, false, false, false];
 
     function findName() {
       const slotInput = document.getElementById("slotInput");
@@ -65,10 +61,13 @@
       for (let i = 0; i < names.length; i++) {
         if (i === slot) {
           output.innerText = `You selected ${names[i]}.`;
+          guessed[i] = true;
           found = true;
           break;
         }
       }
+
+      updateTable();
 
       if (!found) {
         output.innerText = "Name not found. Try again!";
@@ -77,6 +76,13 @@
       if (confirm("Would you like to select another name?")) {
         slotInput.value = "";
         output.innerText = "";
+      }
+    }
+
+    function updateTable() {
+      const nameTable = document.getElementById("nameTable");
+      for (let i = 0; i < names.length; i++) {
+        nameTable.innerHTML += `<tr><td>${i}</td><td>${guessed[i] ? names[i] : ""}</td></tr>`;
       }
     }
   </script>
