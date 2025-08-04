@@ -82,7 +82,7 @@
     function updateTable() {
       const nameTable = document.getElementById("nameTable");
       for (let i = 0; i < names.length; i++) {
-        nameTable.innerHTML += `<tr><td>${i}</td><td>${guessed[i] ? names[i] : ""}</td></tr>`;
+        nameTable.innerHTML = `<tr><td>${i}</td><td>${guessed[i] ? names[i] : ""}</td></tr>`;
       }
     }
   </script>
